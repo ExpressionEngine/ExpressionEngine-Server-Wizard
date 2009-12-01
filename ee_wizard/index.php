@@ -226,7 +226,7 @@ function check_db($db_config)
 		$db_config[$key] = addslashes(trim($val));
 	}
 
-	$conn = mysql_connect($db_config['db_hostname'], $db_config['db_username'], $db_config['db_password']);
+	$conn = @mysql_connect($db_config['db_hostname'], $db_config['db_username'], $db_config['db_password']);
 	
 	if ( ! $conn)
 	{
@@ -234,14 +234,14 @@ function check_db($db_config)
 	}
 	else
 	{
-		if ( ! mysql_select_db($db_config['db_name'], $conn))
+		if ( ! @mysql_select_db($db_config['db_name'], $conn))
 		{
 			$vars['errors'][] = 'Unable to select your database';
 		}
 		else
 		{
 			// Check version requirement
-			if (version_compare(mysql_get_server_info(), '4.1-alpha', '>=') !== TRUE)
+			if (version_compare(@mysql_get_server_info(), '4.1-alpha', '>=') !== TRUE)
 			{
 				$vars['errors'][] = "Your MySQL server does not meet the version requirements";
 			}
