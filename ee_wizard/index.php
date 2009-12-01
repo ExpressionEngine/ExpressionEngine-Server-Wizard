@@ -23,7 +23,7 @@ global $vars, $requirements;
 $vars = array();
 load_defaults();
 
-// accept_pathinfo i.e. no need for query strings
+// AcceptPathInfo or similar support, i.e. no need for query strings
 // check this first so it's already known before we go through
 // the trouble of having the user fill out the database form
 if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
