@@ -325,7 +325,7 @@ function load_defaults()
 						 								'severity'		=> "suggested",
 						 								'supported'		=> 'n'),
 
-						 'pings'			=>	array(	'item'			=> "Ability to send Pings and Trackbacks",
+						 'pings'			=>	array(	'item'			=> "Ability to send Pings",
 						 								'severity'		=> "suggested",
 						 								'supported'		=> 'n'),
 
