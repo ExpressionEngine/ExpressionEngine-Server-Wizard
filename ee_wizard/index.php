@@ -118,7 +118,7 @@ if (check_db($db) === TRUE)
 }
 
 // PHP Version
-if (phpversion() > '4.3.2')
+if (phpversion() > '5.1.6')
 {
 	$requirements['php']['supported'] = 'y';
 }
@@ -297,11 +297,11 @@ function load_defaults()
 {
 	global $vars, $requirements;
 	
-	$vars['heading']		= "ExpressionEngine 2.0 Server Compatibility Wizard";
-	$vars['title']			= "ExpressionEngine 2.0 Server Compatibility Wizard";
+	$vars['heading']		= "ExpressionEngine 2.x Server Compatibility Wizard";
+	$vars['title']			= "ExpressionEngine 2.x Server Compatibility Wizard";
 	$vars['content']		= '';
-	$vars['version']		= '2.0 Public Beta';
-	$vars['copyright']		= '2002-2009 EllisLab, Inc.';
+	$vars['version']		= '2.1.1';
+	$vars['copyright']		= '2002-2010 EllisLab, Inc.';
 	$vars['errors']			= array();
 	$vars['db_hostname']	= (isset($_POST['db_hostname'])) ? $_POST['db_hostname'] : '';
 	$vars['db_username']	= (isset($_POST['db_username'])) ? $_POST['db_username'] : '';
@@ -309,7 +309,7 @@ function load_defaults()
 	$vars['db_name']		= (isset($_POST['db_name'])) ? $_POST['db_name'] : '';
 	
 	
-	$requirements = array('php' 			=>	array(	'item'			=> "PHP Version 4.3.2 or greater",
+	$requirements = array('php' 			=>	array(	'item'			=> "PHP Version 5.1.6 or greater",
 											 			'severity'		=> "required",
 										 				'supported'		=> 'n'),
 
