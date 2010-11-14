@@ -118,7 +118,7 @@ if (check_db($db) === TRUE)
 }
 
 // PHP Version
-if (phpversion() > '5.1.6')
+if (phpversion() >= '5.1.6')
 {
 	$requirements['php']['supported'] = 'y';
 }
