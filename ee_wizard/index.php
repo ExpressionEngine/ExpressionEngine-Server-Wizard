@@ -122,6 +122,10 @@ if (phpversion() >= '5.1.6')
 {
 	$requirements['php']['supported'] = 'y';
 }
+else
+{
+	$vars['errors'][] = "Your PHP version does not meet the minimum requirements";
+}
 
 // CAPTCHAS need imagejpeg()
 if (function_exists('imagejpeg'))
@@ -243,7 +247,7 @@ function check_db($db_config)
 			// Check version requirement
 			if (version_compare(@mysql_get_server_info(), '4.1-alpha', '>=') !== TRUE)
 			{
-				$vars['errors'][] = "Your MySQL server does not meet the version requirements";
+				$vars['errors'][] = "Your MySQL server version does not meet the minimum requirements";
 			}
 			
 			$Q = array();
