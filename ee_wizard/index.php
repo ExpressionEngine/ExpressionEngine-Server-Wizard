@@ -186,23 +186,17 @@ if ($requirements['spellcheck']['supported'] != 'y' && function_exists('curl_ini
 				.	'test content'
 				.'</text></spellrequest>';
 
-	$ch=curl_init(); 
-	curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);
-	curl_setopt($ch,CURLOPT_URL,$url); 
-	curl_setopt($ch,CURLOPT_POST,1); 
-	curl_setopt($ch,CURLOPT_POSTFIELDS,$payload); 
+	$ch = curl_init(); 
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+	curl_setopt($ch, CURLOPT_URL, $url); 
+	curl_setopt($ch, CURLOPT_POST, 1); 
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 
-	// Start ob to prevent curl_exec from displaying stuff. 
-	ob_start(); 
-	curl_exec($ch);
+	$info = curl_exec($ch);
 
-	//Get contents of output buffer 
-	$info=ob_get_contents(); 
 	curl_close($ch);
 
-	//End ob and erase contents.  
-	ob_end_clean();
-	
 	if ($info != '')
 	{
 		$requirements['spellcheck']['supported'] = 'y';
