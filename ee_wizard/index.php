@@ -78,6 +78,15 @@ else
 	$requirements['segment_support']['supported'] = 'n'; // Windows rarely has support for URL Segments and is rather likely to screw up here.
 }
 
+// Memory Limit
+$memory_limit = @ini_get('memory_limit');
+sscanf($memory_limit, "%d%s", $limit, $unit);
+
+if ($limit > 32)
+{
+    $requirements['memory_limit']['supported'] = 'y';
+}
+
 // --------------------------------------------------------------------
 // Display the form if this is the first load
 // --------------------------------------------------------------------
@@ -314,7 +323,9 @@ function load_defaults()
 						 'mysql'			=>	array(	'item'			=> "MySQL (Version 4.1+) support in PHP",
 						 								'severity'		=> "required",
 						 								'supported'		=> 'n'),
-
+						'memory_limit'		=> array(	'item'			=> '>= 32 MB Memory Allocated to PHP',
+														'severity'		=> 'required',
+														'supported'		=> 'n' ),
 						 'segment_support'	=>	array(	'item'			=>	"URL Segment Support",
 						 								'severity'		=>	"suggested",
 						 								'supported'		=>	'n'),
