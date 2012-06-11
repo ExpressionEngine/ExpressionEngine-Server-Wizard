@@ -127,7 +127,7 @@ if (check_db($db) === TRUE)
 }
 
 // PHP Version
-if (phpversion() >= '5.1.6')
+if (version_compare(phpversion(), '5.2.4', '>='))
 {
 	$requirements['php']['supported'] = 'y';
 }
@@ -248,7 +248,7 @@ function check_db($db_config)
 		else
 		{
 			// Check version requirement
-			if (version_compare(@mysql_get_server_info(), '4.1-alpha', '>=') !== TRUE)
+			if (version_compare(@mysql_get_server_info(), '5.0.3', '>=') !== TRUE)
 			{
 				$vars['errors'][] = "Your MySQL server version does not meet the minimum requirements";
 			}
