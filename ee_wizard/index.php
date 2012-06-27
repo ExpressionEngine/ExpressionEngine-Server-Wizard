@@ -423,7 +423,7 @@ function _mini_loader($_ci_data)
 	
 	if ( ! file_exists($_ci_path))
 	{
-		show_error('Unable to load the requested file: '.$_ci_file);
+		exit('Unable to load the requested file: '.$_ci_file);
 	}
 
 	/*
