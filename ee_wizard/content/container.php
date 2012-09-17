@@ -29,7 +29,7 @@
 			
 			<div id="footer">
 				
-				ExpressionEngine <?php echo $version; ?> - &#169; <?php echo $copyright; ?>
+				ExpressionEngine - &#169; 2002&ndash;<?php echo date('Y') ?> EllisLab, Inc.
 				
 			</div>
 

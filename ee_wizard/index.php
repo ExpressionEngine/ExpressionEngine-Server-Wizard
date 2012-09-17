@@ -307,8 +307,6 @@ function load_defaults()
 	$vars['heading']		= "ExpressionEngine 2.x Server Compatibility Wizard";
 	$vars['title']			= "ExpressionEngine 2.x Server Compatibility Wizard";
 	$vars['content']		= '';
-	$vars['version']		= '2.1.1';
-	$vars['copyright']		= '2002-2010 EllisLab, Inc.';
 	$vars['errors']			= array();
 	$vars['db_hostname']	= (isset($_POST['db_hostname'])) ? $_POST['db_hostname'] : '';
 	$vars['db_username']	= (isset($_POST['db_username'])) ? $_POST['db_username'] : '';
