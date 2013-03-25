@@ -140,6 +140,16 @@ else
 	$vars['errors'][] = "Your PHP version does not meet the minimum requirements";
 }
 
+// Check for json_encode and decode
+if ( ! function_exists('json_encode'))
+{
+	$vars['errors'][] = 'Your instance of PHP does not support the json_encode method.';
+}
+if ( ! function_exists('json_decode'))
+{
+	$vars['errors'][] = 'Your instance of PHP does not support the json_decode method.';
+}
+
 // CAPTCHAS need imagejpeg()
 if (function_exists('imagejpeg'))
 {
