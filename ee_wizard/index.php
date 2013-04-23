@@ -84,9 +84,10 @@ else
 
 // Memory Limit
 $memory_limit = @ini_get('memory_limit');
+
 sscanf($memory_limit, "%d%s", $limit, $unit);
 
-if ($limit > 32)
+if ($limit >= 32)
 {
     $requirements['memory_limit']['supported'] = 'y';
 }
@@ -154,6 +155,12 @@ if ( ! function_exists('json_decode'))
 if (function_exists('imagejpeg'))
 {
 	$requirements['captchas']['supported'] = 'y';
+}
+
+// Image properties
+if (function_exists('gd_info'))
+{
+	$requirements['image_properties']['supported'] = 'y';
 }
 
 // Image thumbnailing
@@ -328,11 +335,11 @@ function load_defaults()
 	$vars['db_name']		= (isset($_POST['db_name'])) ? $_POST['db_name'] : '';
 	
 	
-	$requirements = array('php' 			=>	array(	'item'			=> "PHP Version 5.1.6 or greater",
+	$requirements = array('php' 			=>	array(	'item'			=> "PHP Version 5.2.4 or greater",
 											 			'severity'		=> "required",
 										 				'supported'		=> 'n'),
 
-						 'mysql'			=>	array(	'item'			=> "MySQL (Version 4.1+) support in PHP",
+						 'mysql'			=>	array(	'item'			=> "MySQL (Version 5.0.3) support in PHP",
 						 								'severity'		=> "required",
 						 								'supported'		=> 'n'),
 						'memory_limit'		=> array(	'item'			=> '>= 32 MB Memory Allocated to PHP',
@@ -347,6 +354,10 @@ function load_defaults()
 						 								'supported'		=> 'n'),
 
 						 'pings'			=>	array(	'item'			=> "Ability to send Pings",
+						 								'severity'		=> "suggested",
+						 								'supported'		=> 'n'),
+
+						 'image_properties'	=>	array('item'		=> "Image property calculations using GD",
 						 								'severity'		=> "suggested",
 						 								'supported'		=> 'n'),
 
