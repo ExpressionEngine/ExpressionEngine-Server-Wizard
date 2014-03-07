@@ -132,7 +132,7 @@ if (check_db($db) === TRUE)
 }
 
 // PHP Version
-if (version_compare(phpversion(), '5.2.4', '>='))
+if (version_compare(phpversion(), '5.3.10', '>='))
 {
 	$requirements['php']['supported'] = 'y';
 }
