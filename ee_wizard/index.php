@@ -31,31 +31,31 @@ load_defaults();
 // check this first so it's already known before we go through
 // the trouble of having the user fill out the database form
 if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
-{	
+{
 	if ( ! isset($_COOKIE['wizard_segments']) && ! isset($_GET['cookie_check']))
 	{
 		setcookie('wizard_segments', 'check', time() + 60*60*2, '/', '', 0);
-		
+
 		@header("Location: index.php?cookie_check=yes");
 	}
 	elseif (isset($_GET['cookie_check']))
 	{
 		if (isset($_COOKIE['wizard_segments']))
 		{
-			@header("Location: index.php/segment_test/");		
+			@header("Location: index.php/segment_test/");
 		}
 		else
 		{
 			$vars['errors'] = 'Cookies must be enabled';
-		}		
-	}	
+		}
+	}
 	elseif($_COOKIE['wizard_segments'] == 'check')
 	{
 		$pathinfo = pathinfo(__FILE__);
 		$self = ( ! isset($pathinfo['basename'])) ? 'index'.$ext : $pathinfo['basename'];
 		$path_info = (isset($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : @getenv('PATH_INFO');
 		$orig_path_info = str_replace($_SERVER['SCRIPT_NAME'], '', (isset($_SERVER['ORIG_PATH_INFO'])) ? $_SERVER['ORIG_PATH_INFO'] : @getenv('ORIG_PATH_INFO'));
-		
+
 		if ($path_info != '' && $path_info != "/".$self)
 		{
 			$requirements['segment_support']['supported'] = 'y';
@@ -68,7 +68,7 @@ if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
 		{
 			$requirements['segment_support']['supported'] = 'n';
 		}
-		
+
 		setcookie('wizard_segments', $requirements['segment_support']['supported'], time() + 60*60*2, '/', '', 0);
 		@header("Location: ../../index.php");
 	}
@@ -121,7 +121,7 @@ foreach ($db as $key => $val)
 		$vars['content'] = view('error_message', $vars, TRUE);
 		display_and_exit();
 	}
-	
+
 	$db[$key] = $_POST[$key];
 }
 
@@ -188,7 +188,7 @@ if (function_exists('imagepng'))
 }
 
 // Pings
-if (function_exists('fsockopen') && 
+if (function_exists('fsockopen') &&
 	function_exists('xml_parser_create') &&
 	@fsockopen('www.google.com', 80, $errno, $errstr, 2))
 {
@@ -211,16 +211,16 @@ if (function_exists('pspell_check'))
 if ($requirements['spellcheck']['supported'] != 'y' && function_exists('curl_init'))
 {
 	$url = 'https://www.google.com/tbproxy/spell?lang=en&hl=en';
-	
+
 	$payload = 	'<spellrequest textalreadyclipped="0" ignoredups="1" ignoredigits="1" ignoreallcaps="0"><text>'
 				.	'test content'
 				.'</text></spellrequest>';
 
-	$ch = curl_init(); 
+	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($ch, CURLOPT_URL, $url); 
-	curl_setopt($ch, CURLOPT_POST, 1); 
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 
 	$info = curl_exec($ch);
@@ -248,14 +248,14 @@ display_and_exit();
 function check_db($db_config)
 {
 	global $vars;
-	
+
 	foreach ($db_config as $key => $val)
 	{
 		$db_config[$key] = addslashes(trim($val));
 	}
 
 	$conn = @mysql_connect($db_config['db_hostname'], $db_config['db_username'], $db_config['db_password']);
-	
+
 	if ( ! $conn)
 	{
 		$vars['errors'][] = 'Unable to connect to your database server';
@@ -273,7 +273,7 @@ function check_db($db_config)
 			{
 				$vars['errors'][] = "Your MySQL server version does not meet the minimum requirements";
 			}
-			
+
 			$Q = array();
 			$Q['create'] = "CREATE TABLE IF NOT EXISTS ee_test (
 					ee_id int(2) unsigned NOT NULL auto_increment,
@@ -283,7 +283,7 @@ function check_db($db_config)
 			$Q['insert'] = "INSERT INTO ee_test (ee_text) VALUES ('hi')";
 			$Q['update'] = "UPDATE ee_test SET ee_text = 'yo'";
 			$Q['drop'] = "DROP TABLE IF EXISTS ee_test";
-			
+
 			foreach($Q as $type => $sql)
 			{
 				if ( ! $query = @mysql_query($sql, $conn))
@@ -293,7 +293,7 @@ function check_db($db_config)
 			}
 		}
 	}
-	
+
 	return (count($vars['errors']) > 0) ? FALSE : TRUE;
 }
 
@@ -324,7 +324,7 @@ function display_and_exit()
 function load_defaults()
 {
 	global $vars, $requirements;
-	
+
 	$vars['heading']		= "ExpressionEngine 2.x Server Compatibility Wizard";
 	$vars['title']			= "ExpressionEngine 2.x Server Compatibility Wizard";
 	$vars['content']		= '';
@@ -333,8 +333,8 @@ function load_defaults()
 	$vars['db_username']	= (isset($_POST['db_username'])) ? $_POST['db_username'] : '';
 	$vars['db_password']	= (isset($_POST['db_password'])) ? $_POST['db_password'] : '';
 	$vars['db_name']		= (isset($_POST['db_name'])) ? $_POST['db_name'] : '';
-	
-	
+
+
 	$requirements = array('php' 			=>	array(	'item'			=> "PHP Version 5.2.4 or greater",
 											 			'severity'		=> "required",
 										 				'supported'		=> 'n'),
@@ -424,7 +424,7 @@ function view($view, $vars = array(), $return = FALSE)
 function _mini_loader($_ci_data)
 {
 	static $_ci_cached_vars = array();
-	
+
 	// Set the default data variables
 	foreach (array('_ci_view', '_ci_vars', '_ci_path', '_ci_return') as $_ci_val)
 	{
@@ -443,7 +443,7 @@ function _mini_loader($_ci_data)
 		$_ci_x = explode('/', $_ci_path);
 		$_ci_file = end($_ci_x);
 	}
-	
+
 	if ( ! file_exists($_ci_path))
 	{
 		exit('Unable to load the requested file: '.$_ci_file);
@@ -456,13 +456,13 @@ function _mini_loader($_ci_data)
 	 * function or via the second parameter of this function. We'll merge
 	 * the two types and cache them so that views that are embedded within
 	 * other views can have access to these variables.
-	 */	
+	 */
 	if (is_array($_ci_vars))
 	{
 		$_ci_cached_vars = array_merge($_ci_cached_vars, $_ci_vars);
 	}
 	extract($_ci_cached_vars);
-			
+
 	/*
 	 * Buffer the output
 	 *
@@ -476,11 +476,11 @@ function _mini_loader($_ci_data)
 	 * the browser and then stop the timer it won't be accurate.
 	 */
 	ob_start();
-			
+
 	// If the PHP installation does not support short tags we'll
 	// do a little string replacement, changing the short tags
 	// to standard PHP echo statements.
-	
+
 	include($_ci_path); // include() vs include_once() allows for multiple views with the same name
 
 	$buffer = ob_get_contents();
