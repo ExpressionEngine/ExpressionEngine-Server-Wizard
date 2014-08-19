@@ -335,7 +335,7 @@ function load_defaults()
 	$vars['db_name']		= (isset($_POST['db_name'])) ? $_POST['db_name'] : '';
 
 
-	$requirements = array('php' 			=>	array(	'item'			=> "PHP Version 5.2.4 or greater",
+	$requirements = array('php' 			=>	array(	'item'			=> "PHP Version 5.3.10 or greater",
 											 			'severity'		=> "required",
 										 				'supported'		=> 'n'),
 
