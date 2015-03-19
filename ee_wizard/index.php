@@ -94,7 +94,7 @@ sscanf($memory_limit, "%d%s", $limit, $unit);
 
 if ($limit >= 32)
 {
-    $requirements['memory_limit']['supported'] = 'y';
+	$requirements['memory_limit']['supported'] = 'y';
 }
 
 // --------------------------------------------------------------------
