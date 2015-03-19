@@ -21,11 +21,6 @@ define('MINIMUM_MYSQL', '5.0.3');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-if (version_compare(PHP_VERSION, '5.3') < 0)
-{
-	@set_magic_quotes_runtime(0); // Kill magic quotes
-}
-
 define('SERVER_WIZ', TRUE);
 
 global $vars, $requirements;
