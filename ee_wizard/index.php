@@ -13,6 +13,11 @@
 
 // ------------------------------------------------------------------------
 
+define('MINIMUM_PHP', '5.3.10');
+define('MINIMUM_MYSQL', '5.0.3');
+
+// ------------------------------------------------------------------------
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -132,7 +137,7 @@ if (check_db($db) === TRUE)
 }
 
 // PHP Version
-if (version_compare(phpversion(), '5.3.10', '>='))
+if (version_compare(phpversion(), MINIMUM_PHP, '>='))
 {
 	$requirements['php']['supported'] = 'y';
 }
@@ -337,12 +342,12 @@ function load_defaults()
 
 	$requirements = array(
 		'php' => array(
-			'item'      => "PHP Version 5.3.10 or greater",
+			'item'      => "PHP Version ".MINIMUM_PHP." or greater",
 			'severity'  => "required",
 			'supported' => 'n'
 		),
 		'mysql' => array(
-			'item'      => "MySQL (Version 5.0.3) support in PHP",
+			'item'      => "MySQL (Version ".MINIMUM_MYSQL.") support in PHP",
 			'severity'  => "required",
 			'supported' => 'n'
 		),
