@@ -107,11 +107,11 @@ if ( ! isset($_GET['wizard']) OR $_GET['wizard'] != 'run')
 // --------------------------------------------------------------------
 
 $db = array(
-				'db_hostname'			=> '',
-				'db_username'			=> '',
-				'db_password'			=> '',
-				'db_name'				=> ''
-			);
+	'db_hostname' => '',
+	'db_username' => '',
+	'db_password' => '',
+	'db_name'     => ''
+);
 
 foreach ($db as $key => $val)
 {
@@ -212,9 +212,9 @@ if ($requirements['spellcheck']['supported'] != 'y' && function_exists('curl_ini
 {
 	$url = 'https://www.google.com/tbproxy/spell?lang=en&hl=en';
 
-	$payload = 	'<spellrequest textalreadyclipped="0" ignoredups="1" ignoredigits="1" ignoreallcaps="0"><text>'
-				.	'test content'
-				.'</text></spellrequest>';
+	$payload = '<spellrequest textalreadyclipped="0" ignoredups="1" ignoredigits="1" ignoreallcaps="0"><text>'
+		.'test content'
+		.'</text></spellrequest>';
 
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -325,62 +325,78 @@ function load_defaults()
 {
 	global $vars, $requirements;
 
-	$vars['heading']		= "ExpressionEngine 2.x Server Compatibility Wizard";
-	$vars['title']			= "ExpressionEngine 2.x Server Compatibility Wizard";
-	$vars['content']		= '';
-	$vars['errors']			= array();
-	$vars['db_hostname']	= (isset($_POST['db_hostname'])) ? $_POST['db_hostname'] : '';
-	$vars['db_username']	= (isset($_POST['db_username'])) ? $_POST['db_username'] : '';
-	$vars['db_password']	= (isset($_POST['db_password'])) ? $_POST['db_password'] : '';
-	$vars['db_name']		= (isset($_POST['db_name'])) ? $_POST['db_name'] : '';
+	$vars['heading']     = "ExpressionEngine 2.x Server Compatibility Wizard";
+	$vars['title']       = "ExpressionEngine 2.x Server Compatibility Wizard";
+	$vars['content']     = '';
+	$vars['errors']      = array();
+	$vars['db_hostname'] = (isset($_POST['db_hostname'])) ? $_POST['db_hostname'] : '';
+	$vars['db_username'] = (isset($_POST['db_username'])) ? $_POST['db_username'] : '';
+	$vars['db_password'] = (isset($_POST['db_password'])) ? $_POST['db_password'] : '';
+	$vars['db_name']     = (isset($_POST['db_name'])) ? $_POST['db_name'] : '';
 
 
-	$requirements = array('php' 			=>	array(	'item'			=> "PHP Version 5.3.10 or greater",
-											 			'severity'		=> "required",
-										 				'supported'		=> 'n'),
-
-						 'mysql'			=>	array(	'item'			=> "MySQL (Version 5.0.3) support in PHP",
-						 								'severity'		=> "required",
-						 								'supported'		=> 'n'),
-						'memory_limit'		=> array(	'item'			=> '>= 32 MB Memory Allocated to PHP',
-														'severity'		=> 'required',
-														'supported'		=> 'n' ),
-						 'segment_support'	=>	array(	'item'			=>	"URL Segment Support",
-						 								'severity'		=>	"suggested",
-						 								'supported'		=>	'n'),
-
-						 'captchas'			=>	array(	'item'			=> "CAPTCHAs feature and watermarking in Image Gallery",
-						 								'severity'		=> "suggested",
-						 								'supported'		=> 'n'),
-
-						 'pings'			=>	array(	'item'			=> "Ability to send Pings",
-						 								'severity'		=> "suggested",
-						 								'supported'		=> 'n'),
-
-						 'image_properties'	=>	array('item'		=> "Image property calculations using GD",
-						 								'severity'		=> "suggested",
-						 								'supported'		=> 'n'),
-
-						 'image_resizing'	=>	array(	'item'			=> "Image Thumbnailing using GD, GD2, Imagemagick or NetPBM",
-						 								'severity'		=> "suggested",
-						 								'supported'		=> 'n'),
-
-						 'gif_resizing'		=>	array(	'item'			=> "GIF Image Resizing Using GD (or GD 2)",
-						 								'severity'		=> "optional",
-						 								'supported'		=> 'n'),
-
-						 'jpg_resizing'		=>	array(	'item'			=> "JPEG Image Resizing Using GD (or GD 2)",
-						 								'severity'		=> "optional",
-						 								'supported'		=> 'n'),
-
-						 'png_resizing'		=>	array(	'item'			=> "PNG Image Resizing Using GD (or GD 2)",
-						 								'severity'		=> "optional",
-						 								'supported'		=> 'n'),
-
-						 'spellcheck'		=>	array(	'item'			=> "Built in Spellchecker",
-						 								'severity'		=> "optional",
-						 								'supported'		=> 'n'),
-					);
+	$requirements = array(
+		'php' => array(
+			'item'      => "PHP Version 5.3.10 or greater",
+			'severity'  => "required",
+			'supported' => 'n'
+		),
+		'mysql' => array(
+			'item'      => "MySQL (Version 5.0.3) support in PHP",
+			'severity'  => "required",
+			'supported' => 'n'
+		),
+		'memory_limit' => array(
+			'item'      => '>= 32 MB Memory Allocated to PHP',
+			'severity'  => 'required',
+			'supported' => 'n'
+		),
+		'segment_support' => array(
+			'item'      =>	"URL Segment Support",
+			'severity'  =>	"suggested",
+			'supported' =>	'n'
+		),
+		'captchas' => array(
+			'item'      => "CAPTCHAs feature and watermarking in Image Gallery",
+			'severity'  => "suggested",
+			'supported' => 'n'
+		),
+		'pings' => array(
+			'item'      => "Ability to send Pings",
+			'severity'  => "suggested",
+			'supported' => 'n'
+		),
+		'image_properties' => array(
+			'item'      => "Image property calculations using GD",
+			'severity'  => "suggested",
+			'supported' => 'n'
+		),
+		'image_resizing' => array(
+			'item'      => "Image Thumbnailing using GD, GD2, Imagemagick or NetPBM",
+			'severity'  => "suggested",
+			'supported' => 'n'
+		),
+		'gif_resizing' => array(
+			'item'      => "GIF Image Resizing Using GD (or GD 2)",
+			'severity'  => "optional",
+			'supported' => 'n'
+		),
+		'jpg_resizing' => array(
+			'item'      => "JPEG Image Resizing Using GD (or GD 2)",
+			'severity'  => "optional",
+			'supported' => 'n'
+		),
+		'png_resizing' => array(
+			'item'      => "PNG Image Resizing Using GD (or GD 2)",
+			'severity'  => "optional",
+			'supported' => 'n'
+		),
+		'spellcheck' => array(
+			'item'      => "Built in Spellchecker",
+			'severity'  => "optional",
+			'supported' => 'n'
+		),
+	);
 }
 
 // --------------------------------------------------------------------
@@ -404,7 +420,11 @@ function load_defaults()
  */
 function view($view, $vars = array(), $return = FALSE)
 {
-	return _mini_loader(array('_ci_view' => $view, '_ci_vars' => $vars, '_ci_return' => $return));
+	return _mini_loader(array(
+		'_ci_view'   => $view,
+		'_ci_vars'   => $vars,
+		'_ci_return' => $return
+	));
 }
 
 // --------------------------------------------------------------------
