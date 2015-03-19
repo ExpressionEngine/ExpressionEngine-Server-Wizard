@@ -259,42 +259,45 @@ function check_db($db_config)
 		$db_config[$key] = addslashes(trim($val));
 	}
 
-	$conn = @mysql_connect($db_config['db_hostname'], $db_config['db_username'], $db_config['db_password']);
-
-	if ( ! $conn)
+	if ( ! class_exists('PDO'))
 	{
-		$vars['errors'][] = 'Unable to connect to your database server';
+		$vars['errors'][] = 'Unable to connect to your database server. Contact your server administrator about enabling PDO.';
+	}
+
+	$pdo = new PDO(
+		"mysql:host={$db_config['db_hostname']};dbname={$db_config['db_name']}",
+		$db_config['db_username'],
+		$db_config['db_password']
+	);
+
+	if ( ! $pdo)
+	{
+		$vars['errors'][] = 'Unable to connect to your database server.';
 	}
 	else
 	{
-		if ( ! @mysql_select_db($db_config['db_name'], $conn))
+		// Check version requirement
+		if (version_compare($pdo->getAttribute(PDO::ATTR_SERVER_VERSION), MINIMUM_MYSQL, '>=') !== TRUE)
 		{
-			$vars['errors'][] = 'Unable to select your database';
+			$vars['errors'][] = "Your MySQL server version does not meet the minimum requirements";
 		}
-		else
+
+		$queries = array(
+			'create' => "CREATE TABLE IF NOT EXISTS ee_test (
+				ee_id int(2) unsigned NOT NULL auto_increment,
+				ee_text char(2) NOT NULL default '',
+				PRIMARY KEY (ee_id))",
+			'alter'  => "ALTER TABLE ee_test CHANGE COLUMN ee_text ee_text char(3) NOT NULL",
+			'insert' => "INSERT INTO ee_test (ee_text) VALUES ('hi')",
+			'update' => "UPDATE ee_test SET ee_text = 'yo'",
+			'drop'   => "DROP TABLE IF EXISTS ee_test",
+		);
+
+		foreach($queries as $type => $sql)
 		{
-			// Check version requirement
-			if (version_compare(@mysql_get_server_info(), '5.0.3', '>=') !== TRUE)
+			if ($pdo->query($sql) === FALSE)
 			{
-				$vars['errors'][] = "Your MySQL server version does not meet the minimum requirements";
-			}
-
-			$Q = array();
-			$Q['create'] = "CREATE TABLE IF NOT EXISTS ee_test (
-					ee_id int(2) unsigned NOT NULL auto_increment,
-					ee_text char(2) NOT NULL default '',
-					PRIMARY KEY (ee_id))";
-			$Q['alter'] = "ALTER TABLE ee_test CHANGE COLUMN ee_text ee_text char(3) NOT NULL";
-			$Q['insert'] = "INSERT INTO ee_test (ee_text) VALUES ('hi')";
-			$Q['update'] = "UPDATE ee_test SET ee_text = 'yo'";
-			$Q['drop'] = "DROP TABLE IF EXISTS ee_test";
-
-			foreach($Q as $type => $sql)
-			{
-				if ( ! $query = @mysql_query($sql, $conn))
-				{
-					$vars['errors'][] = "Your MySQL user does not have ".strtoupper($type)." permissions";
-				}
+				$vars['errors'][] = "Your MySQL user does not have ".strtoupper($type)." permissions";
 			}
 		}
 	}
