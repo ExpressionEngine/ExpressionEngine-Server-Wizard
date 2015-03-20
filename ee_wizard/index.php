@@ -193,44 +193,6 @@ if (function_exists('fsockopen') &&
 	@fsockopen('www.google.com', 80, $errno, $errstr, 2))
 {
 	$requirements['pings']['supported'] = 'y';
-
-	// can use Google Spellcheck too
-	if (extension_loaded('openssl'))
-	{
-		$requirements['spellcheck']['supported'] = 'y';
-	}
-}
-
-// Native Spellcheck
-if (function_exists('pspell_check'))
-{
-	$requirements['spellcheck']['supported'] = 'y';
-}
-
-// one last try for spellcheck
-if ($requirements['spellcheck']['supported'] != 'y' && function_exists('curl_init'))
-{
-	$url = 'https://www.google.com/tbproxy/spell?lang=en&hl=en';
-
-	$payload = '<spellrequest textalreadyclipped="0" ignoredups="1" ignoredigits="1" ignoreallcaps="0"><text>'
-		.'test content'
-		.'</text></spellrequest>';
-
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-
-	$info = curl_exec($ch);
-
-	curl_close($ch);
-
-	if ($info != '')
-	{
-		$requirements['spellcheck']['supported'] = 'y';
-	}
 }
 
 $vars['requirements'] = $requirements;
@@ -391,11 +353,6 @@ function load_defaults()
 		),
 		'png_resizing' => array(
 			'item'      => "PNG Image Resizing Using GD (or GD 2)",
-			'severity'  => "optional",
-			'supported' => 'n'
-		),
-		'spellcheck' => array(
-			'item'      => "Built in Spellchecker",
 			'severity'  => "optional",
 			'supported' => 'n'
 		),
