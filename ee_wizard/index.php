@@ -142,13 +142,14 @@ else
 }
 
 // Check for json_encode and decode
-if ( ! function_exists('json_encode'))
+if (function_exists('json_encode') && function_exists('json_decode'))
 {
-	$vars['errors'][] = 'Your instance of PHP does not support the json_encode method.';
+	$requirements['json_parser']['supported'] = 'y';
 }
-if ( ! function_exists('json_decode'))
+
+if (function_exists('mcrypt_encrypt'))
 {
-	$vars['errors'][] = 'Your instance of PHP does not support the json_decode method.';
+	$requirements['mcrypt']['supported'] = 'y';
 }
 
 // CAPTCHAS need imagejpeg()
@@ -185,14 +186,6 @@ if (function_exists('imagejpeg'))
 if (function_exists('imagepng'))
 {
 	$requirements['png_resizing']['supported'] = 'y';
-}
-
-// Pings
-if (function_exists('fsockopen') &&
-	function_exists('xml_parser_create') &&
-	@fsockopen('www.google.com', 80, $errno, $errstr, 2))
-{
-	$requirements['pings']['supported'] = 'y';
 }
 
 $vars['requirements'] = $requirements;
@@ -316,18 +309,23 @@ function load_defaults()
 			'severity'  => 'required',
 			'supported' => 'n'
 		),
-		'segment_support' => array(
-			'item'      =>	"URL Segment Support",
-			'severity'  =>	"suggested",
-			'supported' =>	'n'
+		'json_parser' => array(
+			'item'      => 'JSON Parser',
+			'severity'  => 'required',
+			'supported' => 'n'
 		),
-		'captchas' => array(
-			'item'      => "CAPTCHAs feature and watermarking in Image Gallery",
+		'segment_support' => array(
+			'item'      => "URL Segment Support",
 			'severity'  => "suggested",
 			'supported' => 'n'
 		),
-		'pings' => array(
-			'item'      => "Ability to send Pings",
+		'mcrypt' => array(
+			'item'      => "mcrypt",
+			'severity'  => 'suggested',
+			'supported' => 'n'
+		),
+		'captchas' => array(
+			'item'      => "CAPTCHAs and watermarking",
 			'severity'  => "suggested",
 			'supported' => 'n'
 		),
