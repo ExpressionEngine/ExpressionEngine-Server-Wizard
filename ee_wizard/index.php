@@ -147,6 +147,12 @@ if (function_exists('json_encode') && function_exists('json_decode'))
 	$requirements['json_parser']['supported'] = 'y';
 }
 
+// Check for finfo_open
+if (function_exists('finfo_open'))
+{
+	$requirements['fileinfo']['supported'] = 'y';
+}
+
 if (function_exists('mcrypt_encrypt'))
 {
 	$requirements['mcrypt']['supported'] = 'y';
@@ -311,6 +317,11 @@ function load_defaults()
 		),
 		'json_parser' => array(
 			'item'      => 'JSON Parser',
+			'severity'  => 'required',
+			'supported' => 'n'
+		),
+		'fileinfo' => array(
+			'item'      => 'File Information (fileinfo)',
 			'severity'  => 'required',
 			'supported' => 'n'
 		),
