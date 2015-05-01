@@ -1,9 +1,9 @@
 <?php if ( ! defined('SERVER_WIZ')) exit('No direct script access allowed');?>
 
-		<p>The information on this page will tell you if your web host has everything 
-		you need to run ExpressionEngine. If all the "required" features are marked with a "Yes" 
-		then you can run ExpressionEngine. In addition, we recommend that all the 
-		"suggested" features be present as well in order to use ExpressionEngine to 
+		<p>The information on this page will tell you if your web host has everything
+		you need to run ExpressionEngine. If all the "required" features are marked with a "Yes"
+		then you can run ExpressionEngine. In addition, we recommend that all the
+		"suggested" features be present as well in order to use ExpressionEngine to
 		its full potential.</p>
 
 

@@ -10,31 +10,31 @@
 <body>
 
 	<div id="outer">
-	
+
 		<div id="header">
-		
+
 			<img src="./content/logo.gif" width="241" height="88" border="0" alt="ExpressionEngine Server Compatibility Wizard" />
-		
+
 		</div>
-	
-		<div id="inner">		
-		
+
+		<div id="inner">
+
 			<h1><?php echo $heading; ?></h1>
-			
+
 			<div id="content">
-			
+
 				<?php echo $content; ?>
-			
+
 			</div>
-			
+
 			<div id="footer">
-				
+
 				ExpressionEngine - &#169; 2002&ndash;<?php echo date('Y') ?> EllisLab, Inc.
-				
+
 			</div>
 
 		</div>
-				
+
 	</div>
 
 </body>
