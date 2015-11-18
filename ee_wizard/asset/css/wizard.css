@@ -1,0 +1,17 @@
+.severity-required {
+  color: #990000;
+}
+
+.severity-suggested {
+  color: #0000FF;
+}
+
+.supported-y {
+  color: #577d3b;
+  font-weight: bold;
+}
+
+.supported-n {
+  color: #bc4848;
+  font-weight: bold;
+}

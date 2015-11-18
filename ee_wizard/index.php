@@ -46,7 +46,7 @@ if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN')
 		}
 		else
 		{
-			$vars['errors'] = 'Cookies must be enabled';
+			$vars['errors'][] = 'Cookies must be enabled';
 		}
 	}
 	elseif($_COOKIE['wizard_segments'] == 'check')
@@ -98,6 +98,7 @@ if ($limit >= 32)
 
 if ( ! isset($_GET['wizard']) OR $_GET['wizard'] != 'run')
 {
+	$vars['form'] = TRUE;
 	$vars['content'] = view('db_form', $vars, TRUE);
 	display_and_exit();
 }
@@ -289,6 +290,7 @@ function load_defaults()
 {
 	global $vars, $requirements;
 
+	$vars['form']        = FALSE;
 	$vars['heading']     = "ExpressionEngine Server Compatibility Wizard";
 	$vars['title']       = "ExpressionEngine Server Compatibility Wizard";
 	$vars['content']     = '';
@@ -425,7 +427,7 @@ function _mini_loader($_ci_data)
 	{
 		$_ci_ext = pathinfo($_ci_view, PATHINFO_EXTENSION);
 		$_ci_file = ($_ci_ext == '') ? $_ci_view.'.php' : $_ci_view;
-		$_ci_path = './content/'.$_ci_file;
+		$_ci_path = './views/'.$_ci_file;
 	}
 	else
 	{
