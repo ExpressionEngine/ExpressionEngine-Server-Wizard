@@ -5,8 +5,8 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" lang="en-us" dir="ltr">
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-		<link href="/asset/css/common.min.css" rel="stylesheet">
-		<link href="/asset/css/wizard.css" rel="stylesheet">
+		<link href="./asset/css/common.min.css" rel="stylesheet">
+		<link href="./asset/css/wizard.css" rel="stylesheet">
 		<!-- <link href="touch-icon-iphone.png" rel="apple-touch-icon-precomposed" sizes="114x114">
 		<link href="touch-icon-ipad.png" rel="apple-touch-icon-precomposed" sizes="144x144"> -->
 	</head>
