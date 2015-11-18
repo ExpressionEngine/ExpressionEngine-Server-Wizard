@@ -4,7 +4,7 @@
  *
  * @package		ExpressionEngine
  * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2003 - 2009, EllisLab, Inc.
+ * @copyright	Copyright (c) 2003 - 2015, EllisLab, Inc.
  * @license		http://expressionengine.com/docs/license.html
  * @link		http://expressionengine.com
  * @since		Version 2.0
@@ -289,8 +289,8 @@ function load_defaults()
 {
 	global $vars, $requirements;
 
-	$vars['heading']     = "ExpressionEngine 2.x Server Compatibility Wizard";
-	$vars['title']       = "ExpressionEngine 2.x Server Compatibility Wizard";
+	$vars['heading']     = "ExpressionEngine Server Compatibility Wizard";
+	$vars['title']       = "ExpressionEngine Server Compatibility Wizard";
 	$vars['content']     = '';
 	$vars['errors']      = array();
 	$vars['db_hostname'] = (isset($_POST['db_hostname'])) ? $_POST['db_hostname'] : '';
