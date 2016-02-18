@@ -154,6 +154,12 @@ if (function_exists('finfo_open'))
 	$requirements['fileinfo']['supported'] = 'y';
 }
 
+// Check for cURL
+if (function_exists('curl_version'))
+{
+	$requirements['curl']['supported'] = 'y';
+}
+
 if (function_exists('mcrypt_encrypt'))
 {
 	$requirements['mcrypt']['supported'] = 'y';
@@ -324,6 +330,11 @@ function load_defaults()
 		),
 		'fileinfo' => array(
 			'item'      => 'File Information (fileinfo)',
+			'severity'  => 'required',
+			'supported' => 'n'
+		),
+		'curl' => array(
+			'item'      => 'cURL',
 			'severity'  => 'required',
 			'supported' => 'n'
 		),
