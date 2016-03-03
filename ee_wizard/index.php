@@ -160,6 +160,12 @@ if (function_exists('curl_version'))
 	$requirements['curl']['supported'] = 'y';
 }
 
+// Check for OpenSSL
+if (function_exists('openssl_verify'))
+{
+	$requirements['openssl']['supported'] = 'y';
+}
+
 if (function_exists('mcrypt_encrypt'))
 {
 	$requirements['mcrypt']['supported'] = 'y';
@@ -335,6 +341,11 @@ function load_defaults()
 		),
 		'curl' => array(
 			'item'      => 'cURL',
+			'severity'  => 'required',
+			'supported' => 'n'
+		),
+		'openssl' => array(
+			'item'      => 'OpenSSL',
 			'severity'  => 'required',
 			'supported' => 'n'
 		),
