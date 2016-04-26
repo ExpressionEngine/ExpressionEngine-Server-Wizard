@@ -166,6 +166,12 @@ if (function_exists('openssl_verify'))
 	$requirements['openssl']['supported'] = 'y';
 }
 
+// Check for ZipArchive
+if (class_exists('ZipArchive'))
+{
+	$requirements['ziparchive']['supported'] = 'y';
+}
+
 if (function_exists('mcrypt_encrypt'))
 {
 	$requirements['mcrypt']['supported'] = 'y';
@@ -346,6 +352,11 @@ function load_defaults()
 		),
 		'openssl' => array(
 			'item'      => 'OpenSSL',
+			'severity'  => 'required',
+			'supported' => 'n'
+		),
+		'ziparchive' => array(
+			'item'      => 'ZipArchive',
 			'severity'  => 'required',
 			'supported' => 'n'
 		),
