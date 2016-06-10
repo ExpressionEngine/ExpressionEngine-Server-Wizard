@@ -137,10 +137,6 @@ if (version_compare(phpversion(), MINIMUM_PHP, '>='))
 {
 	$requirements['php']['supported'] = 'y';
 }
-else
-{
-	$vars['errors'][] = "Your PHP version does not meet the minimum requirements";
-}
 
 // Check for json_encode and decode
 if (function_exists('json_encode') && function_exists('json_decode'))
@@ -211,6 +207,14 @@ if (function_exists('imagejpeg'))
 if (function_exists('imagepng'))
 {
 	$requirements['png_resizing']['supported'] = 'y';
+}
+
+foreach($requirements as $requirement)
+{
+	if ($requirement['severity'] == 'required' && $requirement['supported'] == 'n')
+	{
+		$vars['errors'][] = $requirement['item'].' is required.';
+	}
 }
 
 $vars['requirements'] = $requirements;
