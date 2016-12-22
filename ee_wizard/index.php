@@ -168,11 +168,6 @@ if (class_exists('ZipArchive'))
 	$requirements['ziparchive']['supported'] = 'y';
 }
 
-if (function_exists('mcrypt_encrypt'))
-{
-	$requirements['mcrypt']['supported'] = 'y';
-}
-
 // CAPTCHAS need imagejpeg()
 if (function_exists('imagejpeg'))
 {
@@ -367,11 +362,6 @@ function load_defaults()
 		'segment_support' => array(
 			'item'      => "URL Segment Support",
 			'severity'  => "suggested",
-			'supported' => 'n'
-		),
-		'mcrypt' => array(
-			'item'      => "mcrypt",
-			'severity'  => 'suggested',
 			'supported' => 'n'
 		),
 		'captchas' => array(
