@@ -15,6 +15,7 @@
 
 define('MINIMUM_PHP', '5.3.10');
 define('MINIMUM_MYSQL', '5.5.3');
+define('DOC_URL', 'https://docs.expressionengine.com/v4/');
 
 // ------------------------------------------------------------------------
 
@@ -265,20 +266,19 @@ function check_db($db_config)
 		if (strpos($client_info, 'mysqlnd') === 0)
 		{
 			$msyql_client_version = preg_replace('/^mysqlnd ([\d.]+).*/', '$1', $client_info);
-			$client_supports_utf8mb4 = version_compare($msyql_client_version, '5.0.9', '>=');
+			$mysql_client_target = '5.0.9';
 		}
 		else
 		{
 			$msyql_client_version = $client_info;
-			$client_supports_utf8mb4 = version_compare($msyql_client_version, '5.5.3', '>=');
+			$mysql_client_target = '5.5.3';
 		}
 		
-		$requirements['emoji_support']['supported'] = ($client_supports_utf8mb4 && $server_supports_utf8mb4) ? 'y' : 'n';
+		$client_supports_utf8mb4 = version_compare($msyql_client_version, $mysql_client_target, '>=');
+		
+		$client_supports_utf8mb4 = FALSE;
 
-		if ( ! $client_supports_utf8mb4)
-		{
-			$vars['errors'][] = "Your MySQL client version does not meet the minimum requirements to support emojis";
-		}
+		$requirements['emoji_support']['supported'] = ($client_supports_utf8mb4 && $server_supports_utf8mb4) ? 'y' : 'n';
 
 		$queries = array(
 			'create' => "CREATE TABLE IF NOT EXISTS ee_test (
@@ -300,7 +300,14 @@ function check_db($db_config)
 		}
 	}
 
-	return (count($vars['errors']) > 0) ? FALSE : TRUE;
+	$return = (count($vars['errors']) > 0) ? FALSE : TRUE;
+
+	if ( ! $client_supports_utf8mb4)
+	{
+		$vars['errors'][] = "Your MySQL client version ({$msyql_client_version}) does not meet the minimum requirements to support Emojis ({$mysql_client_target}). <a href='" . DOC_URL . "troubleshooting/install_and_update/emoji_support.html' rel='external'>Read how to fix this</a>.";
+	}
+
+	return $return;
 }
 
 
