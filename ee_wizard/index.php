@@ -226,7 +226,7 @@ display_and_exit();
  */
 function check_db($db_config)
 {
-	global $vars;
+	global $vars, $requirements;
 
 	foreach ($db_config as $key => $val)
 	{
@@ -250,10 +250,34 @@ function check_db($db_config)
 	}
 	else
 	{
+		$server_supports_utf8mb4 = TRUE;
+		
 		// Check version requirement
 		if (version_compare($pdo->getAttribute(PDO::ATTR_SERVER_VERSION), MINIMUM_MYSQL, '>=') !== TRUE)
 		{
 			$vars['errors'][] = "Your MySQL server version does not meet the minimum requirements";
+			$server_supports_utf8mb4 = FALSE;
+		}
+		
+		// Check client version for utf8mb4 support
+		$client_info = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
+
+		if (strpos($client_info, 'mysqlnd') === 0)
+		{
+			$msyql_client_version = preg_replace('/^mysqlnd ([\d.]+).*/', '$1', $client_info);
+			$client_supports_utf8mb4 = version_compare($msyql_client_version, '5.0.9', '>=');
+		}
+		else
+		{
+			$msyql_client_version = $client_info;
+			$client_supports_utf8mb4 = version_compare($msyql_client_version, '5.5.3', '>=');
+		}
+		
+		$requirements['emoji_support']['supported'] = ($client_supports_utf8mb4 && $server_supports_utf8mb4) ? 'y' : 'n';
+
+		if ( ! $client_supports_utf8mb4)
+		{
+			$vars['errors'][] = "Your MySQL client version does not meet the minimum requirements to support emojis";
 		}
 
 		$queries = array(
@@ -327,6 +351,11 @@ function load_defaults()
 		'mysql' => array(
 			'item'      => "MySQL (Version ".MINIMUM_MYSQL.") support in PHP",
 			'severity'  => "required",
+			'supported' => 'n'
+		),
+		'emoji_support' => array(
+			'item'      => "Emoji Support",
+			'severity'  => "suggested",
 			'supported' => 'n'
 		),
 		'memory_limit' => array(
