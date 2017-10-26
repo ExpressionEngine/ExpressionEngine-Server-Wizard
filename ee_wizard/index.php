@@ -276,8 +276,6 @@ function check_db($db_config)
 		
 		$client_supports_utf8mb4 = version_compare($msyql_client_version, $mysql_client_target, '>=');
 		
-		$client_supports_utf8mb4 = FALSE;
-
 		$requirements['emoji_support']['supported'] = ($client_supports_utf8mb4 && $server_supports_utf8mb4) ? 'y' : 'n';
 
 		$queries = array(
