@@ -252,14 +252,14 @@ function check_db($db_config)
 	else
 	{
 		$server_supports_utf8mb4 = TRUE;
-		
+
 		// Check version requirement
 		if (version_compare($pdo->getAttribute(PDO::ATTR_SERVER_VERSION), MINIMUM_MYSQL, '>=') !== TRUE)
 		{
 			$vars['errors'][] = "Your MySQL server version does not meet the minimum requirements";
 			$server_supports_utf8mb4 = FALSE;
 		}
-		
+
 		// Check client version for utf8mb4 support
 		$client_info = $pdo->getAttribute(PDO::ATTR_CLIENT_VERSION);
 
@@ -273,9 +273,9 @@ function check_db($db_config)
 			$msyql_client_version = $client_info;
 			$mysql_client_target = '5.5.3';
 		}
-		
+
 		$client_supports_utf8mb4 = version_compare($msyql_client_version, $mysql_client_target, '>=');
-		
+
 		$requirements['emoji_support']['supported'] = ($client_supports_utf8mb4 && $server_supports_utf8mb4) ? 'y' : 'n';
 
 		$queries = array(
