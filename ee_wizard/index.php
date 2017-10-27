@@ -358,11 +358,6 @@ function load_defaults()
 			'severity'  => "required",
 			'supported' => 'n'
 		),
-		'emoji_support' => array(
-			'item'      => "Emoji Support",
-			'severity'  => "suggested",
-			'supported' => 'n'
-		),
 		'memory_limit' => array(
 			'item'      => '>= 32 MB Memory Allocated to PHP',
 			'severity'  => 'required',
@@ -391,6 +386,11 @@ function load_defaults()
 		'ziparchive' => array(
 			'item'      => 'ZipArchive',
 			'severity'  => 'required',
+			'supported' => 'n'
+		),
+		'emoji_support' => array(
+			'item'      => "Emoji Support",
+			'severity'  => "suggested",
 			'supported' => 'n'
 		),
 		'segment_support' => array(
