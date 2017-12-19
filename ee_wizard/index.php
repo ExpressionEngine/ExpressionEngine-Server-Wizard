@@ -13,7 +13,7 @@
 
 // ------------------------------------------------------------------------
 
-define('MINIMUM_PHP', '5.3.10');
+define('MINIMUM_PHP', '5.4.0');
 define('MINIMUM_MYSQL', '5.5.3');
 define('DOC_URL', 'https://docs.expressionengine.com/v4/');
 
@@ -239,10 +239,18 @@ function check_db($db_config)
 		$vars['errors'][] = 'Unable to connect to your database server. Contact your server administrator about enabling PDO.';
 	}
 
+	$options = array(
+		PDO::ATTR_PERSISTENT => FALSE,
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		PDO::ATTR_CASE => PDO::CASE_NATURAL,
+		PDO::ATTR_STRINGIFY_FETCHES => ! (extension_loaded('pdo_mysql') && extension_loaded('mysqlnd'))
+	);
+
 	$pdo = new PDO(
 		"mysql:host={$db_config['db_hostname']};dbname={$db_config['db_name']}",
 		$db_config['db_username'],
-		$db_config['db_password']
+		$db_config['db_password'],
+		$options
 	);
 
 	if ( ! $pdo)
