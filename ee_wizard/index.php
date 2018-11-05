@@ -13,7 +13,7 @@
 
 // ------------------------------------------------------------------------
 
-define('MINIMUM_PHP', '5.4.0');
+define('MINIMUM_PHP', '5.6.0');
 define('MINIMUM_MYSQL', '5.5.3');
 define('DOC_URL', 'https://docs.expressionengine.com/v4/');
 
