@@ -43,7 +43,7 @@
 					<p>
 						<a href="https://github.com/ExpressionEngine/ExpressionEngine/issues/new?assignees=&labels=&template=2-bug-report.md" target="_blank" rel="external">Report Bug</a>
 						<b class="sep">&middot;</b>
-						<a href="https://github.com/ExpressionEngine/ExpressionEngine/issues/new?assignees=&labels=&template=2-bug-report.md" target="_blank" rel="external">Manual</a>
+						<a href="https://docs.expressionengine.com/latest/index.html" target="_blank" rel="external">Manual</a>
 					</p>
 				</div>
 			</div>
