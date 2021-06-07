@@ -11,7 +11,7 @@
 		</div>
 	<?php else:?>
 		<div class="alert inline success alert-margin">
-			<h3><b>Yay!</b> Congratulations! Your server is ready to use ExpressionEngine!</h3>
+			<h3>Yay! Congratulations! Your server is ready to use ExpressionEngine!</h3>
 		</div>
 	<?php endif;?>
 
