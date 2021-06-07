@@ -1,17 +1,19 @@
-.severity-required {
-  color: #990000;
-}
 
 .severity-suggested {
-  color: #0000FF;
-}
-
-.supported-y {
-  color: #577d3b;
-  font-weight: bold;
+  color: var(--ee-brand-primary);
 }
 
 .supported-n {
-  color: #bc4848;
+  color: var(--ee-brand-danger);
   font-weight: bold;
+  text-align: center;
+}
+
+.supported-y {
+	color: var(--ee-success);
+	text-align: center;
+	font-weight: bold;
+}
+.severity-required {
+	color: var(--ee-brand-danger);
 }
