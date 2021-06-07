@@ -2,7 +2,7 @@
 
 <form class="settings">
 	<?php if (count($errors) > 0): ?>
-		<div class="alert inline issue">
+		<div class="alert inline issue alert-margin">
 			<h3>Oops, there was an error</h3>
 			<p>To complete the wizard check, the following error(s) must be addressed:</p>
 			<ul>
@@ -10,8 +10,8 @@
 			</ul>
 		</div>
 	<?php else:?>
-		<div class="alert inline success">
-			<h3><b>Yay!</b> Congratulations! Your server is ready to use ExpressionEngine!</h3>
+		<div class="alert inline success alert-margin">
+			<h3>Yay! Congratulations! Your server is ready to use ExpressionEngine!</h3>
 		</div>
 	<?php endif;?>
 
@@ -27,9 +27,9 @@
 		<?php $i = 0; foreach ($requirements as $required): ?>
 			<tr class="<?php echo ($i++ % 2) ? 'even' : '';?>">
 				<td>
-					<strong><?php echo $required['item'];?></strong>
+					<?php echo $required['item'];?>
 				</td>
-				<td>
+				<td class="importance-col">
 					 <span class="severity-<?php echo $required['severity'];?>"><?php echo $required['severity'];?></span>
 				</td>
 

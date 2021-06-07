@@ -11,36 +11,46 @@
 		<link href="touch-icon-ipad.png" rel="apple-touch-icon-precomposed" sizes="144x144"> -->
 	</head>
 	<body id="top">
+
 		<section class="wrap">
+			<div class="login__logo">
+				<?php echo view('ee-logo'); ?>
+			</div>
 			<div class="col-group install-wrap">
 				<div class="col w-16 last">
-					<div class="box">
-						<h1>
-							<?= $heading ?>
-							<?php if ($form): ?><span class="req-title">Required Fields</span><?php endif ?>
-						</h1>
+					<div class="dialog panel">
+						<div class="dialog__header panel-heading text-center">
+							<h1 class="dialog__title">
+								<?= $heading ?>
+								<?php if ($form): ?><?php endif ?>
+							</h1>
+						</div>
 						<?= $content ?>
 					</div>
 				</div>
 			</div>
+
 		</section>
+
 		<section class="product-bar">
+
 			<div class="snap">
-				<div class="left">
-					<p><b><?= $heading ?></b></p>
+
+				<div class="left bar">
+					<p style="float: left;"><a href="https://expressionengine.com/" target="_blank" rel="external"><b>ExpressionEngine</b></a></p>
 				</div>
 				<div class="right">
 					<p>
-						<a href="https://support.ellislab.com/bugs/submit" rel="external">Report Bug</a>
+						<a href="https://github.com/ExpressionEngine/ExpressionEngine/issues/new?assignees=&labels=&template=2-bug-report.md" target="_blank" rel="external">Report Bug</a>
 						<b class="sep">&middot;</b>
-						<a href="https://ellislab.com/expressionengine/user-guide/installation/requirements.html#server-compatibility-wizard" rel="external">Manual</a>
+						<a href="https://docs.expressionengine.com/latest/index.html" target="_blank" rel="external">Manual</a>
 					</p>
 				</div>
 			</div>
 		</section>
 		<section class="footer">
 			<div class="snap">
-				<div class="left"><p>&copy;2003&mdash;<?php echo date('Y') ?> <a href="http://ellislab.com/expressionengine" rel="external">EllisLab</a>, Inc.</p></div>
+				<div class="left"><p>©<?php echo date('Y') ?> <a href="https://packettide.com/" target="_blank" rel="external">Packet Tide</a>, LLC</p></div>
 				<div class="right"><p><a class="scroll" href="#top">scroll to top</a></p></div>
 			</div>
 		</section>
