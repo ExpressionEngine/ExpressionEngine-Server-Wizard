@@ -15,7 +15,7 @@
 
 define('MINIMUM_PHP', '5.6.0');
 define('MINIMUM_MYSQL', '5.5.3');
-define('DOC_URL', 'https://docs.expressionengine.com/v4/');
+define('DOC_URL', 'https://docs.expressionengine.com/latest/');
 
 // ------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@ $memory_limit = @ini_get('memory_limit');
 
 sscanf($memory_limit, "%d%s", $limit, $unit);
 
-if ($limit >= 32)
+if ($limit >= 32 || strtolower($unit) != 'm')
 {
 	$requirements['memory_limit']['supported'] = 'y';
 }
