@@ -1,20 +1,17 @@
 <?php
 /**
- * ExpressionEngine - by EllisLab
+ * This source file is part of the open source project
+ * ExpressionEngine (https://expressionengine.com)
  *
- * @package		ExpressionEngine
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2003 - 2015, EllisLab, Inc.
- * @license		http://expressionengine.com/docs/license.html
- * @link		http://expressionengine.com
- * @since		Version 2.0
- * @filesource
+ * @link      https://expressionengine.com/
+ * @copyright Copyright (c) 2003-2023, Packet Tide, LLC (https://www.packettide.com)
+ * @license   https://expressionengine.com/license Licensed under Apache License, Version 2.0
  */
 
 // ------------------------------------------------------------------------
 
-define('MINIMUM_PHP', '5.6.0');
-define('MINIMUM_MYSQL', '5.5.3');
+define('MINIMUM_PHP', '7.2.5');
+define('MINIMUM_MYSQL', '5.6.4');
 define('DOC_URL', 'https://docs.expressionengine.com/latest/');
 
 // ------------------------------------------------------------------------
