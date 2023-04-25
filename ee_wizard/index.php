@@ -86,11 +86,15 @@ else
 // Memory Limit
 $memory_limit = @ini_get('memory_limit');
 
-sscanf($memory_limit, "%d%s", $limit, $unit);
-
-if ($limit >= 32 || strtolower($unit) != 'm')
-{
+if ($memory_limit == '-1') {
 	$requirements['memory_limit']['supported'] = 'y';
+} else {
+	sscanf($memory_limit, "%d%s", $limit, $unit);
+
+	if ($limit >= 32 || strtolower($unit) != 'm')
+	{
+		$requirements['memory_limit']['supported'] = 'y';
+	}
 }
 
 // --------------------------------------------------------------------
